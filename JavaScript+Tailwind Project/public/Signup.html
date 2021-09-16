@@ -76,38 +76,34 @@
                         <h1>Sign Up</h1>
                 </div>
                     <form action="" name="signup" id="form" method="POST">
-                        <label class="font-bold" for="first-name">Full Name:</label>
-                        <br>
-                        <input class="border-2 border-black rounded shadow-md pl-1 my-1 mr-1" id="first-name" oninput="validateform()" name="first-name" type="text" placeholder="First Name" required>
+
+                        <label class="font-bold block" for="first-name">Full Name:</label>
+                        <input class="border-2 border-black rounded shadow-md pl-1 mr-1 mb-1" id="first-name" oninput="validateform()" name="first-name" type="text" placeholder="First Name" required>
                         <input class="border-2 border-black rounded shadow-md pl-1" oninput="validateform()" id="last-name" name="last-name" type="text" placeholder="Last Name" required>
-                        <br>
-                        <div class="grid grid-cols-2">
+                        
+                        <div class="grid grid-cols-2 mb-2">
                         <i><span id="text-firstname" class="font-medium text-xs"></span></i>
                         <i><span id="text-lastname" class="font-medium text-xs"></span></i>
                         </div>
                         
-                        <br>
-                        <label class="font-bold" for="email">Email:</label>
-                        <br>
-                        <input class="border-2 border-black rounded shadow-md w-full pl-1 my-1" oninput="validateform()" id="email" name="email" type="email" placeholder="Email" required>
-                        <i><span id="text-email" class="font-medium text-xs"></span></i>
-                        <br>
-                        <label class="font-bold" for="address">Address:</label>
-                        <br>
-                        <input class="border-2 border-black rounded shadow-md w-full pl-1 my-1" id="address" name="address" type="text-area " placeholder="Address">
-                        <br>
-                        <label class="font-bold" for="age">Age:</label>
-                        <br>
-                        <input class="border-2 border-black rounded shadow-md pl-1 my-1 w-14" id="age" name="age" type="number" placeholder="Age" required>
-                        <br>
-                        <label class="font-bold" for="phone number">Phone Number:</label>
-                        <br>
-                        <input class="border-2 border-black rounded shadow-md pl-1 my-1" id="phone-number" name="phone-number" type="Alpha numeric" placeholder="Phone Number" required>
-                        <br>
-                        <label class="font-bold" for="country">Country:</label>
-                        <br>
-                        <select class="border-2 border-black rounded shadow-md pl-1 my-1 w-full" id="selection" name="country">
-                                    <option required="false" ><h1 class="font-bold" >Select your country</h1> </option>
+                        <label class="font-bold block" for="address">Address:</label>
+                        <input class="border-2 mb-1 border-black rounded shadow-md w-full pl-1" oninput="validateform()" id="address" name="address" type="text-area " placeholder="Address">
+                        
+                        <div class="mb-2"><i><span id="text-address" class="font-medium text-xs"></span></i></div>
+                        
+                        
+                        <label class="font-bold block" for="address">Age:</label>
+                        <input class="border-2 border-black rounded mb-1 shadow-md pl-1 w-14 block" oninput="validateform()" id="age" name="age" type="number" placeholder="Age" required>
+                        <div class="mb-3"><i><span id="text-age" class="font-medium text-xs mb-1"></span></i></div>
+
+                        <label class="font-bold block" for="phone number">Phone Number:</label>
+                        <input class="border-2 border-black rounded shadow-md mb-1 pl-1 block" oninput="validateform()" id="phone-number" name="phone-number" type="Alpha numeric" placeholder="Phone Number" required>
+                        <div class="mb-3"> <i><span id="text-phonenumber" class="font-medium text-xs block"></span></i></div>
+                       
+                        
+                        <label class="font-bold block" for="country">Country:</label>
+                        <select class="border-2 border-black rounded shadow-md pl-1 w-min mb-1 block" oninput="validateform()" id="country" name="country">
+                                    <option value="0"><h1 class="font-bold" >Select your country</h1> </option>
                                     <option value="Afghanistan">Afghanistan</option>
                                     <option value="Åland Islands">Åland Islands</option>
                                     <option value="Albania">Albania</option>
@@ -354,19 +350,18 @@
                                     <option value="Zimbabwe">Zimbabwe</option>
                             
                         </select>
-                        <br>
+                        <div class="mb-3"><i><span id="text-country" class="font-medium text-xs mb-1"></span></i></div>
+                        
+                        
                         <label class="font-bold" for="gender">Gender:</label>
                         <span class="ml-1"></span>
-                        <input class="my-2 mx-1" name="gender" type="radio">
+                        <input class="my-2 mx-1" id="male-gender" name="gender" type="radio">
                         <label class="font-bold" for="male">Male</label>
-                        <input class="mx-1" name="gender" type="radio">
+                        <input class="mx-1" id="female-gender" name="gender" type="radio">
                         <label class="font-bold" for="female">Female</label>
-                        <br>
-                        <input class="mb-3 mt-5" name="cheak" type="checkbox" required>
-                        <label for=""><span class="text-gray-500 relative bottom-0.3">I agree to the terms of  service</span></label>
-                        <br>
-                        <div class="bg-black text-white w-min rounded-md px-4 py-1">
-                        <input class="bg-transparent " type="submit">
+                        
+                        <div class="bg-gray-500 text-white w-min rounded-md px-4 py-1 mt-3" id="submitdiv">
+                        <input class="bg-transparent " type="submit" id="submit" disabled>
                         </div>
                     
                     </form>
@@ -408,8 +403,21 @@
         <script>
             function validateform() {
 
-                // var returnval = true;
-                var form = document.getElementById("form");
+                
+
+                var gender = document.querySelector("input[type='radio']")
+                gender.checked=true;
+
+                var submit_div = document.getElementById("submitdiv");
+
+                var submit = document.querySelector("input[type='submit']")
+
+                var fsubmit=true;
+                var lsubmit=true;
+                var agesubmit=true;
+                var psubmit=true;
+                var countrysubmit=true;
+                
 
                 var first_name = document.getElementById("first-name");
                 var text_firstname = document.getElementById("text-firstname");
@@ -436,8 +444,9 @@
                 else if (first_name.value.length>=3 || first_name.value.length<20) {
                     
                     first_name.style.borderColor="#0dd121";
-                    text_firstname.innerHTML = "*Good";
+                    text_firstname.innerHTML = "*Valid";
                     text_firstname.style.color = "#0dd121";
+                    fsubmit=false;
 
                 }
 
@@ -446,11 +455,12 @@
 
                 if (last_name.value.length==0) {
                     
+                    // last_name.style.borderColor="#d10d0d";
                     text_lastname.innerHTML = "*Last name must be filled";
                     text_lastname.style.color = "#d10d0d";
 
                 }
-                else if (last_name.value.length>0 && last_name.value.length<2) {
+                else if (last_name.value.length>0 && last_name.value.length<3) {
                     
                     last_name.style.borderColor="#d10d0d";
                     text_lastname.innerHTML = "*last name is too small";
@@ -463,183 +473,183 @@
                     text_lastname.innerHTML = "*Last name is too Long";
                     text_lastname.style.color = "#d10d0d";
                 }
-                else if (last_name.value.length>=2 || last_name.value.length<20) {
+                else if (last_name.value.length>=3 || last_name.value.length<20) {
                     
                     last_name.style.borderColor="#0dd121";
-                    text_lastname.innerHTML = "*Good";
+                    text_lastname.innerHTML = "*Valid";
                     text_lastname.style.color = "#0dd121";
+                    lsubmit=false;
 
                 }
 
-                var email = document.getElementById("last-name");
-                var email_text = document.getElementById("text-email");
+                var address = document.getElementById("address");
+                var text_address = document.getElementById("text-address");
 
-                // if (email.value.length==0) {
+                if (address.value.length==0) {
                     
-                //     email_text.innerHTML = "*Email must be filled";
-                //     email_text.style.color = "#d10d0d";
-
-                // }
-                // else
-                s if (email.value.length>0 && email.value.length<12) {
-                    
-                    email.style.borderColor="#d10d0d";
-                    email_text.innerHTML = "*Email is too small";
-                    email_text.style.color = "#d10d0d";
+                    address.style.borderColor="black";
+                    text_address.innerHTML = "*Address is Optionol";
+                    text_address.style.color = "#0dd121";
 
                 }
-                else if(last_name.value.length>=20)
+                else if (address.value.length>0 && address.value.length<15) {
+                    
+                    address.style.borderColor="#d10d0d";
+                    text_address.innerHTML = "*Address is too small";
+                    text_address.style.color = "#d10d0d";
+
+                }
+                else if(address.value.length>=250)
                 {
-                    last_name.style.borderColor="#d10d0d";
-                    text2.innerHTML = "*Last name is too Long";
-                    text2.style.color = "#d10d0d";
+                    address.style.borderColor="#d10d0d";
+                    text_address.innerHTML = "*Address is too Long";
+                    text_address.style.color = "#d10d0d";
                 }
-                else if (last_name.value.length>=2 || last_name.value.length<20) {
+                else if (address.value.length>=15 || address.value.length<250) {
                     
-                    last_name.style.borderColor="#0dd121";
-                    text2.innerHTML = "*Good";
-                    text2.style.color = "#0dd121";
+                    address.style.borderColor="#0dd121";
+                    text_address.innerHTML = "*Valid";
+                    text_address.style.color = "#0dd121";
+                    
 
                 }
+
+                var age = document.getElementById("age");
+                var text_age = document.getElementById("text-age");
+
+                if (age.value.length==0) {
+                    
+                    // age.style.borderColor="#d10d0d";
+                    text_age.innerHTML = "*Age must be filled";
+                    text_age.style.color = "#d10d0d";
+
+                }
+                else if (age.value<=0) {
+                    
+                    age.style.borderColor="#d10d0d";
+                    text_age.innerHTML = "*Age is not valid";
+                    text_age.style.color = "#d10d0d";
+
+                }
+                else if(age.value>=121)
+                {
+                    age.style.borderColor="#d10d0d";
+                    text_age.innerHTML = "*Age is not valid";
+                    text_age.style.color = "#d10d0d";
+                }
+                else if (age.value>=1 || age.value<121) {
+                    
+                    age.style.borderColor="#0dd121";
+                    text_age.innerHTML = "*Valid";
+                    text_age.style.color = "#0dd121";
+                    agesubmit=false;
+
+                }
+
+                var phone_number = document.getElementById("phone-number");
+                var text_phone_number = document.getElementById("text-phonenumber");
+
+                if (phone_number.value.length==0) {
+                    
+                    // age.style.borderColor="#d10d0d";
+                    text_phone_number.innerHTML = "*Phone Number must be filled";
+                    text_phone_number.style.color = "#d10d0d";
+
+                }
+                else if (phone_number.value.length>0 && phone_number.value.length<11) {
+                    
+                    phone_number.style.borderColor="#d10d0d";
+                    text_phone_number.innerHTML = "*Phone Number is too Small";
+                    text_phone_number.style.color = "#d10d0d";
+
+                }
+                else if(phone_number.value.length>=21)
+                {
+                    phone_number.style.borderColor="#d10d0d";
+                    text_phone_number.innerHTML = "*Phone Number is too Large";
+                    text_phone_number.style.color = "#d10d0d";
+                }
+                else if (phone_number.value.length>=11 || phone_number.value.length<21) {
+                    
+                    phone_number.style.borderColor="#0dd121";
+                    text_phone_number.innerHTML = "*Valid";
+                    text_phone_number.style.color = "#0dd121";
+                    psubmit=false;
+
+                }
+
+                var exp = /^[A-Za-z0-9+\s]+$/;
+                var result = exp.test(phone_number.value);
+
+                if (!result) {
+
+                    phone_number.style.borderColor="#d10d0d";
+                    text_phone_number.innerHTML = "*Phone Number is not Alpha Numeric";
+                    text_phone_number.style.color = "#d10d0d";
+
+                }
+
+                var space = /\s/;
+                var result1 = space.test(phone_number.value);
+
+                if (result1) {
+
+                    phone_number.style.borderColor="#d10d0d";
+                    text_phone_number.innerHTML = "*Remove Space";
+                    text_phone_number.style.color = "#d10d0d";
+
+                }
+
+                var country = document.getElementById("country");
+                var text_country = document.getElementById("text-country");
+
+                if (country.value == "0") {
+                    
+                    if (on==true) {
+                        country.style.borderColor="#d10d0d";
+                        text_country.innerHTML = "*Country must";
+                        text_country.style.color = "#d10d0d";
+                    }
+                    else
+                    {
+                        // country.style.borderColor="#d10d0d";
+                        text_country.innerHTML = "*Country must be filled";
+                        text_country.style.color = "#d10d0d";
+                    }
+                
+                }
+                else
+                {
+                    on=true;
+                    country.style.borderColor="#0dd121";
+                    text_country.innerHTML = "*Valid";
+                    text_country.style.color = "#0dd121";
+                    countrysubmit=false;
+                    
+                }
+
+                
+
+                if (country.value != "0" && first_name.value.length>=3 && last_name.value.length>=3 && phone_number.value.length>=11 && age.value>=1) {
+                    submit.disabled=false;
+                }
+
+                // if (fsubmit == false && lsubmit == false && agesubmit == false && psubmit == false && countrysubmit == false) 
+                // {
+                //     submit.disabled==false;
+                // }
                 
                 
-                
-                
-
-                // var last_name = document.getElementById("last-name");
-                // var text2 = document.getElementById("text2");
-
-                // if (last_name.value.length<3) 
-                // {
-                //     // form.classList.add("valid")
-                //     // form.classList.remove("invalid")
-                //     last_name.style.borderColor="#ff0000";
-                //     text2.innerHTML = "*Last name is too small";
-                //     text2.style.color = "#ff0000";
-                //     // returnval = false;
-                // }
-                // else if(last_name.value.length>=20)
-                // {
-                //     // form.classList.add("valid")
-                //     // form.classList.remove("invalid")
-                //     last_name.style.borderColor="#ff0000";
-                //     text2.innerHTML = "*Last name is too Long";
-                //     text2.style.color = "#ff0000";
-                //     // returnval = false;
-                // }
-                // else if(last_name.value.length>=3 || last_name.value.length<20)
-                // {
-                //     last_name.style.borderColor="#00ff00";
-                //     text2.innerHTML = "*Good";
-                //     text2.style.color = "#00ff00";
-                // }
 
                 
-                
+                if (submit.disabled==false)
+                {
+                    submit_div.style.backgroundColor = "black";
+                    
+                }
 
-                // var last_name_val = document.forms['signup']["last-name"].value;
+                return returnval;
 
-                // if (last_name_val.length<3) {
-                //     document.getElementById("last-name").style.borderColor ="red";
-                //     alert("Last Name is too Short")
-                //     returnval = false;
-                // }
-                // else if(last_name_val.length>20)
-                // {
-                //     alert("Last Name is too Long")
-                //     returnval = false;
-                // }
-
-                // var email_val = document.forms['signup']["email"].value;
-
-                // if (email_val.length<12) {
-                //     alert("Email is too Short")
-                //     returnval = false;
-                // }
-                // else if(email_val.length>30)
-                // {
-                //     alert("Email is too Long")
-                //     returnval = false;
-                // }
-
-                // var age_val = document.forms['signup']["age"].value;
-
-                // if (age_val<1) {
-                //     alert("Age is not Valid")
-                //     returnval = false;
-                // }
-                // else if(age_val>120)
-                // {
-                //     alert("Age is not Valid")
-                //     returnval = false;
-                // }
-
-                // var phone_number_val = document.forms['signup']["phone-number"].value;
-
-                // if (phone_number_val.length<11) {
-                //     alert("Phone number is too Short")
-                //     returnval = false;
-                // }
-                // else if(phone_number_val.length>=20)
-                // {
-                //     alert("Phone Number is too Long")
-                //     returnval = false;
-                // }
-
-                // var exp = /^[A-Za-z0-9+\s]+$/;
-                // var result = exp.test(phone_number_val);
-
-                // if (!result) {
-                //     alert("Phone number is not Alpha Numeric")
-                //     returnval = false;
-                // }
-
-                // var space = /\s/;
-                // var result1 = space.test(phone_number_val);
-
-                // if (result1) {
-                //     alert("Dont Use Space in phone number")
-                //     returnval = false;
-                // }
-
-                // var address_val = document.forms['signup']["address"].value;
-
-                // if (address_val.length<15&&address_val>0) {
-                //     alert("Address is too Short")
-                //     returnval = false;
-                // }
-                // else if(address_val.length>=250)
-                // {
-                //     alert("Address is too Long")
-                //     returnval = false;
-                // }
-                // else if(address_val.length==0)
-                // {
-                //     returnval = true;
-                // }
-
-                // var country_val = document.forms['signup']["country"].value;
-
-                // if (country_val=="select your country") {
-                //     alert("Plx Select Country")
-                //     returnval = false;
-                // }
-
-                // var gender_val = document.forms['signup']["gender"];
-
-                // if (gender_val[0].checked==false&&gender_val[1].checked==false) {
-                //     alert("Gender is Required")
-                //     returnval = false;
-                // }
-
-                // var cheak_val = document.forms['signup']["cheak"].value;
-
-                // function seterror(id, error) {
-                //     element = document.getElementById(id);
-                //     element.getElementsByClassName('formerror')[0].innerHTML = error;
-                // }
-                
-                // return returnval;
             }
         </script>
         
