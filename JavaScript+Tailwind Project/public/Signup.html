@@ -72,33 +72,37 @@
 
             <div class="bg-gray-200 min-h-screen grid place-content-center">
                 <div class="bg-white rounded-md shadow-md p-8 my-20">
+
                 <div class="text-center font-bold text-2xl pb-4 ">
                         <h1>Sign Up</h1>
                 </div>
+
                     <form action="" name="signup" id="form" method="POST">
 
                         <label class="font-bold block" for="first-name">Full Name:</label>
-                        <input class="border-2 border-black rounded shadow-md pl-1 mr-1 mb-1" id="first-name" oninput="validateform()" name="first-name" type="text" placeholder="First Name" required>
-                        <input class="border-2 border-black rounded shadow-md pl-1" oninput="validateform()" id="last-name" name="last-name" type="text" placeholder="Last Name" required>
+                        <input class="border-2 border-black rounded shadow-md pl-1 mr-1 mb-1" id="first-name" onkeyup="validateform()" name="first-name" type="text" placeholder="First Name">
+                        <input class="border-2 border-black rounded shadow-md pl-1" oninput="validateform()" id="last-name" name="last-name" type="text" placeholder="Last Name">
                         
-                        <div class="grid grid-cols-2 mb-2">
+                        <div class="grid grid-cols-2 h-5">
                         <i><span id="text-firstname" class="font-medium text-xs"></span></i>
                         <i><span id="text-lastname" class="font-medium text-xs"></span></i>
                         </div>
                         
                         <label class="font-bold block" for="address">Address:</label>
-                        <input class="border-2 mb-1 border-black rounded shadow-md w-full pl-1" oninput="validateform()" id="address" name="address" type="text-area " placeholder="Address">
+                        <input class="border-2 mb-1 border-black rounded shadow-md w-full pl-1" onkeyup="validateform()" id="address" name="address" type="text-area " placeholder="Address">
                         
-                        <div class="mb-2"><i><span id="text-address" class="font-medium text-xs"></span></i></div>
+                        <div class="h-5"><i><span id="text-address" class="font-medium text-xs"></span></i></div>
                         
                         
                         <label class="font-bold block" for="address">Age:</label>
-                        <input class="border-2 border-black rounded mb-1 shadow-md pl-1 w-14 block" oninput="validateform()" id="age" name="age" type="number" placeholder="Age" required>
-                        <div class="mb-3"><i><span id="text-age" class="font-medium text-xs mb-1"></span></i></div>
+                        <input class="border-2 border-black rounded mb-1 shadow-md pl-1 w-14 block" oninput="validateform()" id="age" name="age" type="number" placeholder="Age">
+
+                        <div class="h-5"><i><span id="text-age" class="font-medium text-xs mb-1"></span></i></div>
 
                         <label class="font-bold block" for="phone number">Phone Number:</label>
-                        <input class="border-2 border-black rounded shadow-md mb-1 pl-1 block" oninput="validateform()" id="phone-number" name="phone-number" type="Alpha numeric" placeholder="Phone Number" required>
-                        <div class="mb-3"> <i><span id="text-phonenumber" class="font-medium text-xs block"></span></i></div>
+                        <input class="border-2 border-black rounded shadow-md mb-1 pl-1 block" onkeyup="validateform()" id="phone-number" name="phone-number" type="Alpha numeric" placeholder="Phone Number">
+
+                        <div class="h-5"> <i><span id="text-phonenumber" class="font-medium text-xs block"></span></i></div>
                        
                         
                         <label class="font-bold block" for="country">Country:</label>
@@ -350,7 +354,8 @@
                                     <option value="Zimbabwe">Zimbabwe</option>
                             
                         </select>
-                        <div class="mb-3"><i><span id="text-country" class="font-medium text-xs mb-1"></span></i></div>
+
+                        <div class="h-5"><i><span id="text-country" class="font-medium text-xs mb-1"></span></i></div>
                         
                         
                         <label class="font-bold" for="gender">Gender:</label>
@@ -361,7 +366,7 @@
                         <label class="font-bold" for="female">Female</label>
                         
                         <div class="bg-gray-500 text-white w-min rounded-md px-4 py-1 mt-3" id="submitdiv">
-                        <input class="bg-transparent " type="submit" id="submit" disabled>
+                        <input class="bg-transparent " type="submit" id="submit">
                         </div>
                     
                     </form>
@@ -401,52 +406,58 @@
         </footer>
 
         <script>
+
+            var gen = true;
+            var text_color_red = "#d10d0d";
+            var tect_color_green = "#0dd121";
+           
+
             function validateform() {
-
-                
-
-                var gender = document.querySelector("input[type='radio']")
-                gender.checked=true;
 
                 var submit_div = document.getElementById("submitdiv");
 
-                var submit = document.querySelector("input[type='submit']")
+                var submit = document.querySelector("input[type='submit']");
+                submit.disabled = true;
 
-                var fsubmit=true;
-                var lsubmit=true;
-                var agesubmit=true;
-                var psubmit=true;
-                var countrysubmit=true;
+                var error = true;
+
+                var gender = document.querySelector("input[type='radio']")
                 
+                if (gen == true) 
+                {
+                    
+                    gender.checked=true;
+                    gen = false;
 
+                }
+ 
                 var first_name = document.getElementById("first-name");
+
                 var text_firstname = document.getElementById("text-firstname");
-                
+                   
                 if (first_name.value.length==0) {
                     
                     text_firstname.innerHTML = "*First name must be filled";
-                    text_firstname.style.color = "#d10d0d";
+                    text_firstname.style.color = text_color_red;
 
                 }
                 else if (first_name.value.length>0 && first_name.value.length<3) {
                     
-                    first_name.style.borderColor="#d10d0d";
+                    first_name.style.borderColor=text_color_red;
                     text_firstname.innerHTML = "*First name is too small";
-                    text_firstname.style.color = "#d10d0d";
+                    text_firstname.style.color = text_color_red;
 
                 }
                 else if(first_name.value.length>=20)
                 {
-                    first_name.style.borderColor="#d10d0d";
+                    first_name.style.borderColor=text_color_red;
                     text_firstname.innerHTML = "*First name is too Long";
-                    text_firstname.style.color = "#d10d0d";
+                    text_firstname.style.color = text_color_red;
                 }
                 else if (first_name.value.length>=3 || first_name.value.length<20) {
                     
-                    first_name.style.borderColor="#0dd121";
-                    text_firstname.innerHTML = "*Valid";
-                    text_firstname.style.color = "#0dd121";
-                    fsubmit=false;
+                    first_name.style.borderColor= tect_color_green;
+                    text_firstname.innerHTML = "";
 
                 }
 
@@ -455,30 +466,27 @@
 
                 if (last_name.value.length==0) {
                     
-                    // last_name.style.borderColor="#d10d0d";
                     text_lastname.innerHTML = "*Last name must be filled";
-                    text_lastname.style.color = "#d10d0d";
+                    text_lastname.style.color = text_color_red;
 
                 }
                 else if (last_name.value.length>0 && last_name.value.length<3) {
                     
-                    last_name.style.borderColor="#d10d0d";
+                    last_name.style.borderColor= text_color_red;
                     text_lastname.innerHTML = "*last name is too small";
-                    text_lastname.style.color = "#d10d0d";
+                    text_lastname.style.color = text_color_red;
 
                 }
                 else if(last_name.value.length>=20)
                 {
-                    last_name.style.borderColor="#d10d0d";
+                    last_name.style.borderColor= text_color_red;
                     text_lastname.innerHTML = "*Last name is too Long";
-                    text_lastname.style.color = "#d10d0d";
+                    text_lastname.style.color = text_color_red;
                 }
                 else if (last_name.value.length>=3 || last_name.value.length<20) {
                     
-                    last_name.style.borderColor="#0dd121";
-                    text_lastname.innerHTML = "*Valid";
-                    text_lastname.style.color = "#0dd121";
-                    lsubmit=false;
+                    last_name.style.borderColor= tect_color_green;
+                    text_lastname.innerHTML = "";
 
                 }
 
@@ -487,30 +495,27 @@
 
                 if (address.value.length==0) {
                     
-                    address.style.borderColor="black";
-                    text_address.innerHTML = "*Address is Optionol";
-                    text_address.style.color = "#0dd121";
+                    address.style.borderColor="#0dd121";
+                    text_address.innerHTML = "";
 
                 }
                 else if (address.value.length>0 && address.value.length<15) {
                     
-                    address.style.borderColor="#d10d0d";
+                    address.style.borderColor= text_color_red;
                     text_address.innerHTML = "*Address is too small";
-                    text_address.style.color = "#d10d0d";
+                    text_address.style.color = text_color_red;
 
                 }
                 else if(address.value.length>=250)
                 {
-                    address.style.borderColor="#d10d0d";
+                    address.style.borderColor= text_color_red;
                     text_address.innerHTML = "*Address is too Long";
-                    text_address.style.color = "#d10d0d";
+                    text_address.style.color = text_color_red;
                 }
                 else if (address.value.length>=15 || address.value.length<250) {
                     
-                    address.style.borderColor="#0dd121";
-                    text_address.innerHTML = "*Valid";
-                    text_address.style.color = "#0dd121";
-                    
+                    address.style.borderColor= tect_color_green;
+                    text_address.innerHTML = "";
 
                 }
 
@@ -519,30 +524,27 @@
 
                 if (age.value.length==0) {
                     
-                    // age.style.borderColor="#d10d0d";
                     text_age.innerHTML = "*Age must be filled";
-                    text_age.style.color = "#d10d0d";
+                    text_age.style.color = text_color_red;
 
                 }
                 else if (age.value<=0) {
                     
-                    age.style.borderColor="#d10d0d";
+                    age.style.borderColor= text_color_red;
                     text_age.innerHTML = "*Age is not valid";
-                    text_age.style.color = "#d10d0d";
+                    text_age.style.color = text_color_red;
 
                 }
                 else if(age.value>=121)
                 {
-                    age.style.borderColor="#d10d0d";
+                    age.style.borderColor= text_color_red;
                     text_age.innerHTML = "*Age is not valid";
-                    text_age.style.color = "#d10d0d";
+                    text_age.style.color = text_color_red;
                 }
                 else if (age.value>=1 || age.value<121) {
                     
-                    age.style.borderColor="#0dd121";
-                    text_age.innerHTML = "*Valid";
-                    text_age.style.color = "#0dd121";
-                    agesubmit=false;
+                    age.style.borderColor= tect_color_green;
+                    text_age.innerHTML = "";
 
                 }
 
@@ -551,41 +553,38 @@
 
                 if (phone_number.value.length==0) {
                     
-                    // age.style.borderColor="#d10d0d";
                     text_phone_number.innerHTML = "*Phone Number must be filled";
-                    text_phone_number.style.color = "#d10d0d";
+                    text_phone_number.style.color = text_color_red;
 
                 }
                 else if (phone_number.value.length>0 && phone_number.value.length<11) {
                     
-                    phone_number.style.borderColor="#d10d0d";
+                    phone_number.style.borderColor= text_color_red;
                     text_phone_number.innerHTML = "*Phone Number is too Small";
-                    text_phone_number.style.color = "#d10d0d";
+                    text_phone_number.style.color = text_color_red;
 
                 }
                 else if(phone_number.value.length>=21)
                 {
-                    phone_number.style.borderColor="#d10d0d";
+                    phone_number.style.borderColor= text_color_red;
                     text_phone_number.innerHTML = "*Phone Number is too Large";
-                    text_phone_number.style.color = "#d10d0d";
+                    text_phone_number.style.color = text_color_red;
                 }
                 else if (phone_number.value.length>=11 || phone_number.value.length<21) {
                     
-                    phone_number.style.borderColor="#0dd121";
-                    text_phone_number.innerHTML = "*Valid";
-                    text_phone_number.style.color = "#0dd121";
-                    psubmit=false;
+                    phone_number.style.borderColor= tect_color_green;
+                    text_phone_number.innerHTML = "";
 
                 }
 
-                var exp = /^[A-Za-z0-9+\s]+$/;
+                var exp = /^[A-Za-z0-9+\s]*$/;
                 var result = exp.test(phone_number.value);
 
                 if (!result) {
 
-                    phone_number.style.borderColor="#d10d0d";
+                    phone_number.style.borderColor= text_color_red;
                     text_phone_number.innerHTML = "*Phone Number is not Alpha Numeric";
-                    text_phone_number.style.color = "#d10d0d";
+                    text_phone_number.style.color = text_color_red;
 
                 }
 
@@ -594,9 +593,9 @@
 
                 if (result1) {
 
-                    phone_number.style.borderColor="#d10d0d";
+                    phone_number.style.borderColor= text_color_red;
                     text_phone_number.innerHTML = "*Remove Space";
-                    text_phone_number.style.color = "#d10d0d";
+                    text_phone_number.style.color = text_color_red;
 
                 }
 
@@ -604,51 +603,34 @@
                 var text_country = document.getElementById("text-country");
 
                 if (country.value == "0") {
-                    
-                    if (on==true) {
-                        country.style.borderColor="#d10d0d";
-                        text_country.innerHTML = "*Country must";
-                        text_country.style.color = "#d10d0d";
-                    }
-                    else
-                    {
-                        // country.style.borderColor="#d10d0d";
-                        text_country.innerHTML = "*Country must be filled";
-                        text_country.style.color = "#d10d0d";
-                    }
+
+                    country.style.borderColor= text_color_red;
+                    text_country.innerHTML = "*Country must be filled";
+                    text_country.style.color = text_color_red;
                 
                 }
                 else
                 {
-                    on=true;
-                    country.style.borderColor="#0dd121";
-                    text_country.innerHTML = "*Valid";
-                    text_country.style.color = "#0dd121";
-                    countrysubmit=false;
+                    country.style.borderColor= tect_color_green;
+                    text_country.innerHTML = "";
                     
                 }
 
-                
-
-                if (country.value != "0" && first_name.value.length>=3 && last_name.value.length>=3 && phone_number.value.length>=11 && age.value>=1) {
-                    submit.disabled=false;
+                if((address.value.length==0 || (address.value.length>=15 && address.v) && first_name.value.length <=20 && first_name.value.length >=3 && last_name.value.length <=20 && last_name.value.length >=3 && age.value >=1 && age.value <=120 && phone_number.value.length >=11 && phone_number.value.length <=20 && result1 != 1 && result ==1 && country.value != "0") {
+                    error = false;
                 }
 
-                // if (fsubmit == false && lsubmit == false && agesubmit == false && psubmit == false && countrysubmit == false) 
-                // {
-                //     submit.disabled==false;
-                // }
-                
-                
-
-                
+                if(! error) {
+                    submit.disabled = false;
+                }
+    
                 if (submit.disabled==false)
                 {
                     submit_div.style.backgroundColor = "black";
                     
+                } else {
+                    submit_div.style.backgroundColor = "gray";
                 }
-
-                return returnval;
 
             }
         </script>
