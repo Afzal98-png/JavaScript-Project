@@ -1,5 +1,6 @@
 <html lang="en">
     <head>
+        
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,6 @@
         <link rel="stylesheet" href="styles.css">
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
         
     </head> 
     <body>
@@ -616,9 +616,25 @@
                     
                 }
 
-                if((address.value.length==0 || (address.value.length>=15 && address.v) && first_name.value.length <=20 && first_name.value.length >=3 && last_name.value.length <=20 && last_name.value.length >=3 && age.value >=1 && age.value <=120 && phone_number.value.length >=11 && phone_number.value.length <=20 && result1 != 1 && result ==1 && country.value != "0") {
-                    error = false;
-                }
+                if(
+                    (address.value.length==0 
+                    || (address.value.length>=15 && address.value.length<=250))
+                    && first_name.value.length <=20
+                    && first_name.value.length >=3
+                    && last_name.value.length <=20
+                    && last_name.value.length >=3
+                    && age.value >=1
+                    && age.value <=120
+                    && phone_number.value.length >=11
+                    && phone_number.value.length <=20
+                    && result1 != 1
+                    && result ==1
+                    && country.value != "0"
+                    ) 
+                    
+                    {
+                        error = false;
+                    }
 
                 if(! error) {
                     submit.disabled = false;
@@ -635,6 +651,6 @@
             }
         </script>
         
-</body>
+    </body>
 
 </html>
